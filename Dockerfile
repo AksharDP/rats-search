@@ -2,7 +2,18 @@ FROM node:22
 ARG DEBIAN_FRONTEND=noninteractive
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
-COPY --chown=node:node . .
+
+# Copy package files first for better layer caching
+COPY --chown=node:node package.json .
+
+# Copy necessary directories to expected locations
+# Webpack expects src/app/index.js for entry and app/app.html for template
+COPY --chown=node:node legacy/app ./src/app
+COPY --chown=node:node legacy/app ./app
+COPY --chown=node:node legacy/background ./src/background
+COPY --chown=node:node imports ./imports
+COPY --chown=node:node translations ./translations
+
 RUN npm install -g npm
 USER node
 
