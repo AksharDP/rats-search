@@ -5,6 +5,7 @@ WORKDIR /home/node/app
 
 # Copy package files first for better layer caching
 COPY --chown=node:node package.json .
+COPY --chown=node:node .babelrc .
 
 # Copy necessary directories to expected locations
 # Webpack expects src/app/index.js for entry and app/app.html for template
