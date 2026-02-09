@@ -1,0 +1,31 @@
+# Git files
+.git
+.github
+.gitignore
+.gitmodules
+
+# Build directories
+build
+build-*
+cmake-build-*
+
+# C++ source files (not needed for Node.js server)
+src/*.cpp
+src/*.h
+src/api
+src/librats
+CMakeLists.txt
+
+# Documentation
+*.md
+docs
+
+# Test files
+tests
+
+# Resources (icons, etc)
+resources
+
+# Other config files
+cliff.toml
+error.txt
