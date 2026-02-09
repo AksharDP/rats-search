@@ -8,7 +8,9 @@ COPY --chown=node:node package.json .
 COPY --chown=node:node .babelrc .
 
 # Copy necessary directories to expected locations
-# Webpack expects src/app/index.js for entry and app/app.html for template
+# Note: legacy/app is copied to both locations because webpack.config.production.js requires:
+#   - src/app/index.js (entry point via path.resolve)
+#   - app/app.html (template via relative path)
 COPY --chown=node:node legacy/app ./src/app
 COPY --chown=node:node legacy/app ./app
 COPY --chown=node:node legacy/background ./src/background
